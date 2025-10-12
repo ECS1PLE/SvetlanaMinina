@@ -1,13 +1,17 @@
-import React from 'react';
+import React from "react";
 
 export const Hero: React.FC = () => (
   <section className="hero">
-    <h1>Системное управление для <span>руководителей</span></h1>
+    <h1>
+      Системное управление для <span>руководителей</span>
+    </h1>
     <p>
       Практикующий консультант по вопросам карьеры и управления с 13+ летним
       опытом. Помогаю руководителям и собственникам бизнеса выстраивать
       эффективные системы управления.
     </p>
-    <a href="#consultation" className="btn">Записаться на консультацию →</a>
+    <a href="https://t.me/Minina_CV" className="btn">
+      Записаться на консультацию →
+    </a>
   </section>
-)
+);
