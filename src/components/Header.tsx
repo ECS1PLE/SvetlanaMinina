@@ -1,22 +1,55 @@
-import React from 'react';
+import React from "react";
 
 export const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="logo">
-        <div><span>🎯</span></div>
+        <div>
+          <span style={{ marginTop: "auto" }}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="lucide lucide-target w-6 h-6 text-white"
+              aria-hidden="true"
+              style={{ marginTop: "auto" }}
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+          </span>
+        </div>
         <span>Светлана Минина</span>
       </div>
       <nav>
         <ul>
-          <li><a href="#about">Обо мне</a></li>
-          <li><a href="#path">Мой путь</a></li>
-          <li><a href="#help">Как я помогаю</a></li>
-          <li><a href="#format">Формат работы</a></li>
-          <li><a href="#reviews">Отзывы</a></li>
-          <li><a href="#contacts">Контакты</a></li>
+          <li>
+            <a href="#about">Обо мне</a>
+          </li>
+          <li>
+            <a href="#path">Мой путь</a>
+          </li>
+          <li>
+            <a href="#help">Как я помогаю</a>
+          </li>
+          <li>
+            <a href="#format">Формат работы</a>
+          </li>
+          <li>
+            <a href="#reviews">Отзывы</a>
+          </li>
+          <li>
+            <a href="#contacts">Контакты</a>
+          </li>
         </ul>
       </nav>
     </header>
-  )
-}
+  );
+};
