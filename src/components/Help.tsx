@@ -1,4 +1,6 @@
 import React from "react";
+import { HelpCard } from "./UI/HelpCard";
+import UIButton from "./UI/Button";
 
 const services = [
   {
@@ -46,17 +48,13 @@ export const Help: React.FC = () => (
     </p>
     <div className="help-container">
       {services.map((s, i) => (
-        <div className="help-card" key={i}>
-          <i>{s.icon}</i>
-          <h3>{s.title}</h3>
-          <p>{s.desc}</p>
-        </div>
+        <HelpCard key={i} icon={s.icon} title={s.title} desc={s.desc} />
       ))}
     </div>
     <div style={{ textAlign: "center", marginTop: 40 }}>
-      <a href="https://t.me/Minina_CV" className="btn">
+      <UIButton href="https://t.me/Minina_CV">
         Записаться на консультацию →
-      </a>
+      </UIButton>
     </div>
   </section>
 );

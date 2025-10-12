@@ -1,4 +1,5 @@
 import React from "react";
+import UIButton from "./UI/Button";
 
 export const Hero: React.FC = () => (
   <section className="hero">
@@ -10,8 +11,8 @@ export const Hero: React.FC = () => (
       опытом. Помогаю руководителям и собственникам бизнеса выстраивать
       эффективные системы управления.
     </p>
-    <a href="https://t.me/Minina_CV" className="btn">
+    <UIButton href="https://t.me/Minina_CV">
       Записаться на консультацию →
-    </a>
+    </UIButton>
   </section>
 );
