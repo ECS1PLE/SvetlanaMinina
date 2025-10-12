@@ -24,7 +24,7 @@ export const About: React.FC = () => (
         </ul>
       </div>
       <div className="about-card" style={{ padding: "5px" }}>
-        <img src="./public/minina_1.jpg" alt="Светлана" />
+        <img src="/minina_1.jpg" alt="Светлана" />
       </div>
       <div className="about-text">
         <h3>Мои компетенции:</h3>
