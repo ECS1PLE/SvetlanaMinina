@@ -1,6 +1,10 @@
 import React from "react";
 import { ContactItem } from "./UI/ContactItem";
 import UIButton from "./UI/Button";
+import { Phone } from "lucide-react";
+import { Mail } from "lucide-react";
+import { MessageSquare } from "lucide-react";
+import { Target } from "lucide-react";
 
 export const Contacts: React.FC = () => (
   <section id="contacts">
@@ -18,39 +22,54 @@ export const Contacts: React.FC = () => (
     <div className="contact-container">
       <div className="contact-info">
         <ContactItem
-          icon="📞"
+          icon={<Phone />}
           label="Телефон"
           value="+7 (911) 891-97-37"
           href="tel:+79118919737"
         />
         <ContactItem
-          icon="✉️"
+          icon={<Mail />}
           label="Email"
           value="solnce2085@mail.ru"
           href="mailto:solnce2085@mail.ru"
         />
         <ContactItem
-          icon="💬"
+          icon={<MessageSquare />}
           label="Telegram"
           value="https://t.me/Minina_CV"
           href="https://t.me/Minina_CV"
         />
         <ContactItem
-          icon="📢"
+          icon={<Target />}
           label="Telegram канал"
           value="https://t.me/Minina_SV"
           href="https://t.me/Minina_SV"
         />
       </div>
-      <div className="contact-form">
-        <p>
+      <div
+        className="contact-form"
+        style={{ display: "flex", flexDirection: "column", gap: "14px" }}
+      >
+        <p style={{ fontSize: "15px" }}>
           Оставьте заявку, и я свяжусь с вами в течение 24 часов для обсуждения
           вашей задачи и возможных форматов сотрудничества.
         </p>
-        <UIButton href="https://t.me/Minina_CV">
+        <UIButton
+          href="https://t.me/Minina_CV"
+          style={{
+            width: "100% !important",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
           Записаться на консультацию →
         </UIButton>
-        <div className="small">Или напишите напрямую в Telegram</div>
+        <div
+          className="small"
+          style={{ textAlign: "center", fontSize: "14px" }}
+        >
+          Или напишите напрямую в Telegram
+        </div>
       </div>
     </div>
   </section>
