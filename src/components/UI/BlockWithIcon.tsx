@@ -3,24 +3,39 @@ import React from "react";
 interface IconProps {
   icon: React.ReactNode;
   className?: string;
+  bgColor?: string;
+  iconColor?: string;
+  size?: number;
+  iconSize?: number;
 }
 
-const BlockWithIcon: React.FC<IconProps> = ({ icon, className }) => {
+const BlockWithIcon: React.FC<IconProps> = ({
+  icon,
+  className,
+  bgColor = "rgb(254 243 199)",
+  iconColor = "rgb(180 83 9 / var(--tw-text-opacity, 1))",
+  size = 48,
+  iconSize = 24,
+}) => {
   return (
     <div
       className={className}
       style={{
-        width: "48px",
-        height: "48px",
+        width: `${size}px`,
+        height: `${size}px`,
         borderRadius: "0.5rem",
-        backgroundColor: "rgb(254 243 199)",
+        backgroundColor: bgColor,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "rgb(180 83 9 / var(--tw-text-opacity, 1))",
+        color: iconColor,
       }}
     >
-      {icon}
+      {React.isValidElement(icon) ? (
+        React.cloneElement(icon, { size: iconSize })
+      ) : (
+        <span style={{ fontSize: iconSize }}>{icon}</span>
+      )}
     </div>
   );
 };

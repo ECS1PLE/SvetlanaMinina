@@ -1,13 +1,18 @@
 import React from "react";
 import { FormatCard } from "./UI/FormatCard";
+import { LucideClock, LucideLaptop, LucideNotebook } from "lucide-react";
 
 export const Format: React.FC = () => (
   <section id="format">
     <h2>Формат работы</h2>
     <div className="format-container">
       <FormatCard
-        icon="⏱️"
+        icon=<LucideClock />
         title="Формат сессий"
+        bgColor="#ea580c"
+        iconColor="white"
+        size={64}
+        iconSize={32}
         items={[
           "Онлайн/офлайн",
           "Длительность: 60-90 минут",
@@ -15,8 +20,12 @@ export const Format: React.FC = () => (
         ]}
       />
       <FormatCard
-        icon="📋"
+        icon=<LucideNotebook />
         title="Пример пакетной сессии"
+        bgColor="#ea580c"
+        iconColor="white"
+        size={64}
+        iconSize={32}
         items={[
           "Диагностика (Точка А)",
           "Дорожная карта достижения цели",
@@ -24,8 +33,12 @@ export const Format: React.FC = () => (
         ]}
       />
       <FormatCard
-        icon="💻"
+        icon=<LucideLaptop />
         title="Результат для клиента"
+        bgColor="#ea580c"
+        iconColor="white"
+        size={64}
+        iconSize={32}
         items={[
           "Осознание текущей ситуации (Точка А)",
           "Четкое видение желаемого (Точка Б)",

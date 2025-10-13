@@ -99,6 +99,8 @@ export const Path: React.FC = () => {
           >
             <div className="item-content">
               <BlockWithIcon
+                bgColor="#ea580c"
+                iconColor="white"
                 icon={item.icon}
                 className={`${i % 2 === 0 ? "margin-left-auto" : "right"}`}
               />
