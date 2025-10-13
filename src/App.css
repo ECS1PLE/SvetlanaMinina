@@ -440,3 +440,7 @@ footer {
   flex-direction: column;
   gap: 16px;
 }
+
+.margin-left-auto {
+  margin-left: auto;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import { AboutCard } from "./UI/AbotCard";
+import { User } from "lucide-react";
 
 export const About: React.FC = () => (
   <section id="about">
@@ -12,7 +13,8 @@ export const About: React.FC = () => (
 
       <div className="about-content">
         <AboutCard
-          icon="👤"
+          icon={<User size={48} />}
+          style={{ marginRight: "auto", color: "rgb(180 83 9)" }}
           title="Здравствуйте!"
           subtitle="Я — Светлана Минина"
           text="Эксперт с 13-летним опытом управления в сфере HR и продаж."

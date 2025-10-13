@@ -1,38 +1,54 @@
 import React, { useEffect, useRef } from "react";
+import {
+  Award,
+  Compass,
+  GraduationCap,
+  Users,
+  BookOpen,
+  Trophy,
+} from "lucide-react";
+import BlockWithIcon from "./UI/BlockWithIcon";
 
-const items = [
+interface PathItem {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+  tag: string;
+}
+
+const items: PathItem[] = [
   {
-    icon: "🎓",
+    icon: <Award />,
     title: "2 диплома",
     desc: "Бухгалтер, менеджер по туризму",
     tag: "Образование",
   },
   {
-    icon: "🏅",
+    icon: <Compass />,
     title: "Профессиональные курсы",
     desc: "Сила продаж, публичные выступления, Мастер управления",
     tag: "Развитие",
   },
   {
-    icon: "🏛️",
+    icon: <GraduationCap />,
     title: "Кураторство и клубы",
     desc: 'Куратор на курсе, участие в клубе "Компас лидера"',
     tag: "Непрерывное обучение",
   },
   {
-    icon: "📚",
+    icon: <Users />,
     title: "1–2 книги в месяц",
     desc: "Глубокое погружение в профессиональную литературу",
     tag: "Постоянное чтение",
   },
   {
-    icon: "🧠",
+    icon: <BookOpen />,
     title: "Комплексное развитие",
     desc: "Коучинг, менторинг, терапия с психологом, развитие с наставником",
     tag: "Личностный рост",
   },
   {
-    icon: "💼",
+    icon: <Trophy />,
     title: "Собственная система",
     desc: "Разработала систему построения и развития команды",
     tag: "Экспертность",
@@ -43,8 +59,8 @@ export const Path: React.FC = () => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const items = ref.current?.querySelectorAll(".timeline-item");
-    if (!items) return;
+    const elements = ref.current?.querySelectorAll(".timeline-item");
+    if (!elements) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -57,7 +73,7 @@ export const Path: React.FC = () => {
       { threshold: 0.2 }
     );
 
-    items.forEach((item) => observer.observe(item));
+    elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
@@ -82,7 +98,10 @@ export const Path: React.FC = () => {
             className={`timeline-item ${i % 2 === 0 ? "left" : "right"}`}
           >
             <div className="item-content">
-              <i>{item.icon}</i>
+              <BlockWithIcon
+                icon={item.icon}
+                className={`${i % 2 === 0 ? "margin-left-auto" : "right"}`}
+              />
               <h3>{item.title}</h3>
               <p>{item.desc}</p>
               <span className="tag">{item.tag}</span>

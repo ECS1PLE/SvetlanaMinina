@@ -1,10 +1,14 @@
-interface Icon {
+import React from "react";
+
+interface IconProps {
   icon: React.ReactNode;
+  className?: string;
 }
 
-const BlockWithIcon: React.FC<Icon> = ({ icon }) => {
+const BlockWithIcon: React.FC<IconProps> = ({ icon, className }) => {
   return (
     <div
+      className={className}
       style={{
         width: "48px",
         height: "48px",
