@@ -7,6 +7,7 @@ interface AboutCardProps {
   list?: string[];
   quote?: string;
   className?: string;
+  subtitle?: string;
 }
 
 export const AboutCard: React.FC<AboutCardProps> = ({
@@ -16,10 +17,12 @@ export const AboutCard: React.FC<AboutCardProps> = ({
   list,
   quote,
   className,
+  subtitle,
 }) => (
   <div className={className}>
     {icon && <i>{icon}</i>}
     <h3>{title}</h3>
+    <h3>{subtitle}</h3>
     {text && <p>{text}</p>}
     {list && (
       <ul>
