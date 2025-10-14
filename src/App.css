@@ -427,6 +427,14 @@ footer {
   .about-content {
     width: 100%;
   }
+
+  .contact-container {
+    flex-direction: column;
+  }
+
+  .contact-form > .btn {
+    padding: 12px 16px;
+  }
 }
 
 .contact-item {
