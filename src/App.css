@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap");
 :root {
   --primary: #f57c00;
   --secondary: #263238;
@@ -15,7 +16,7 @@
   padding: 0;
 }
 body {
-  font-family: "Segoe UI", Roboto, sans-serif;
+  font-family: "Playfair Display", serif;
   background: #fff;
   color: var(--text-dark);
   line-height: 1.6;
