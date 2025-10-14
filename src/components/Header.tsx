@@ -5,26 +5,20 @@ export const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
   const firstLinkRef = useRef<HTMLAnchorElement | null>(null);
 
-  // lock body scroll when menu open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
 
-  // close on ESC
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
-      // optional: trap focus (simple)
       if (e.key === "Tab" && open) {
-        // keep focus inside menu: if shift+tab from first link, move to close button etc.
-        // For complex focus-trap use a small library; here is a minimal attempt omitted for brevity.
       }
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // when opening, focus first nav link for keyboard users
   useEffect(() => {
     if (open && firstLinkRef.current) {
       firstLinkRef.current.focus();
@@ -77,7 +71,7 @@ export const Header: React.FC = () => {
             <a href="#path">Мой путь</a>
           </li>
           <li>
-            <a href="#help">Как я помогаю</a>
+            <a href="#help">Чем я могу быть вам полезна</a>
           </li>
           <li>
             <a href="#format">Формат работы</a>
@@ -91,7 +85,6 @@ export const Header: React.FC = () => {
         </ul>
       </nav>
 
-      {/* hamburger button */}
       <button
         className="burger-btn"
         aria-expanded={open}
@@ -102,7 +95,6 @@ export const Header: React.FC = () => {
         <span className={`burger ${open ? "open" : ""}`} />
       </button>
 
-      {/* mobile menu */}
       <div
         id="mobile-menu"
         className={`mobile-menu ${open ? "mobile-menu--open" : ""}`}
@@ -168,7 +160,7 @@ export const Header: React.FC = () => {
               </li>
               <li>
                 <a href="#help" onClick={() => setOpen(false)}>
-                  Как я помогаю
+                  Чем я могу быть вам полезна
                 </a>
               </li>
               <li>
