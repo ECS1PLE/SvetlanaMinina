@@ -8,6 +8,7 @@ import {
   Trophy,
 } from "lucide-react";
 import BlockWithIcon from "./UI/BlockWithIcon";
+import "../../src/path.css";
 
 interface PathItem {
   icon: React.ReactNode;
@@ -59,18 +60,24 @@ export const Path: React.FC = () => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const elements = ref.current?.querySelectorAll(".timeline-item");
-    if (!elements) return;
+    const container = ref.current;
+    if (!container) return;
+
+    const elements = container.querySelectorAll<HTMLElement>(".timeline-item");
+    if (!elements.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
+          const el = entry.target as HTMLElement;
+          if (entry.intersectionRatio >= 0.5) {
+            el.classList.add("visible");
+          } else {
+            el.classList.remove("visible");
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: [0, 0.5, 1] }
     );
 
     elements.forEach((el) => observer.observe(el));
@@ -78,14 +85,15 @@ export const Path: React.FC = () => {
   }, []);
 
   return (
-    <section id="path">
-      <h2>Мой путь</h2>
+    <section id="path" className="path-section">
+      <h2 className="section-title">Мой путь</h2>
+
       <div className="path-title">
-        <p style={{ textAlign: "center" }}>
+        <p className="lead">
           "Мой путь — это пазл, собранный из решений, встреч и уроков. Картина
           ещё не закончена, но её очертания уже радуют."
         </p>
-        <p style={{ textAlign: "center" }}>
+        <p className="lead">
           Мой принцип: непрерывное развитие через обучение у сильнейших
           специалистов и глубокое погружение в профессиональную литературу.
         </p>
@@ -96,6 +104,7 @@ export const Path: React.FC = () => {
           <div
             key={i}
             className={`timeline-item ${i % 2 === 0 ? "left" : "right"}`}
+            style={{ ["--i" as any]: i } as React.CSSProperties}
           >
             <div className="item-content">
               <BlockWithIcon
@@ -104,9 +113,11 @@ export const Path: React.FC = () => {
                 icon={item.icon}
                 className={`${i % 2 === 0 ? "margin-left-auto" : "right"}`}
               />
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
-              <span className="tag">{item.tag}</span>
+              <div className="text-block">
+                <h3 className="item-title">{item.title}</h3>
+                <p className="item-desc">{item.desc}</p>
+                <span className="tag">{item.tag}</span>
+              </div>
             </div>
           </div>
         ))}
@@ -114,3 +125,5 @@ export const Path: React.FC = () => {
     </section>
   );
 };
+
+export default Path;
