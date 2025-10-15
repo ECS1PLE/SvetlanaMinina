@@ -45,7 +45,7 @@ export const Help: React.FC = () => (
         textAlign: "center",
         maxWidth: 600,
         margin: "0 auto 40px",
-        color: "#607d8b",
+        color: "black",
       }}
     >
       Я — практикующий консультант по вопросам карьеры и управления с более чем

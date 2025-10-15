@@ -32,7 +32,7 @@ export const Reviews: React.FC = () => (
         textAlign: "center",
         maxWidth: "100%",
         margin: "0 auto 32px",
-        color: "#607d8b",
+        color: "black",
       }}
     >
       Что говорят руководители и собственники бизнеса о нашей работе

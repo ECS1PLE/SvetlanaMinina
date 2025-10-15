@@ -14,7 +14,7 @@ export const Contacts: React.FC = () => (
         textAlign: "center",
         maxWidth: 600,
         margin: "0 auto 32px",
-        color: "#607d8b",
+        color: "black",
       }}
     >
       Готова обсудить вашу задачу и предложить решение

@@ -12,7 +12,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
   position,
 }) => (
   <div className="review-card">
-    <p style={{ fontStyle: "italic", color: "#607d8b" }}>{`"${text}"`}</p>
+    <p style={{ fontStyle: "italic", color: "black" }}>{`"${text}"`}</p>
     <div className="author">{author}</div>
     <div className="position" style={{ color: "var(--primary)" }}>
       {position}

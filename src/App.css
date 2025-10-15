@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap");
 :root {
-  --primary: #635c56; /*f57c00*/
+  --primary: #f57c00; /**/
   --secondary: #263238;
   --light-bg: #fff9f0;
   --soft-bg: #fef7e8;
-  --text-dark: #263238;
-  --text-gray: #607d8b;
+  --text-dark: black;
+  --text-gray: black;
   --border-color: #ffd54f;
   --footer-bg: #9e4a1b;
 }
@@ -218,7 +218,7 @@ section h2::after {
 }
 
 .item-content p {
-  color: #555;
+  color: black;
   margin: 5px 0 10px;
 }
 
