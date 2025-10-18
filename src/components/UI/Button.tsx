@@ -35,11 +35,8 @@ const UIButton: React.FC<Button> = ({ children, style, onClick }) => {
       <a
         className="btn"
         style={style}
-        onClick={(e) => {
+        onClick={() => {
           setIsOpen((prev) => !prev);
-          if (onClick) {
-            onClick(e);
-          }
         }}
       >
         {children}
