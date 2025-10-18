@@ -66,9 +66,7 @@ export const Help: React.FC = () => (
       ))}
     </div>
     <div style={{ textAlign: "center", marginTop: 40 }}>
-      <UIButton href="https://t.me/Minina_CV">
-        Записаться на консультацию →
-      </UIButton>
+      <UIButton>Записаться на консультацию →</UIButton>
     </div>
   </section>
 );

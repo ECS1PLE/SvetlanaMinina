@@ -597,3 +597,23 @@ footer {
 header.header {
   z-index: 1100;
 }
+
+.background-pop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  overscroll-behavior: contain;
+}
+
+.modal-pop {
+  background: #fff;
+  border-radius: 8px;
+  width: 400px;
+  overflow: auto;
+  padding: 24px;
+  z-index: 10001;
+}

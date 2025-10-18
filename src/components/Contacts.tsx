@@ -55,7 +55,6 @@ export const Contacts: React.FC = () => (
           вашей задачи и возможных форматов сотрудничества.
         </p>
         <UIButton
-          href="https://t.me/Minina_CV"
           style={{
             width: "100% !important",
             marginLeft: "auto",
