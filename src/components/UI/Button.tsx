@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-type FormValues = {
+export type FormValues = {
   fullName: string;
   contactMethod: "phone" | "whatsapp" | "telegram";
   phone: string;
+  telegramHandle?: string;
   email?: string;
   agree: boolean;
 };
@@ -21,21 +22,28 @@ export default function UIButtonWithForm({
   onClick,
 }: ButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm<FormValues>({
     defaultValues: {
       fullName: "",
       contactMethod: "phone",
       phone: "",
+      telegramHandle: "",
       email: "",
       agree: false,
     },
   });
+
+  const contactMethod = watch("contactMethod");
 
   useEffect(() => {
     if (isOpen) {
@@ -59,7 +67,6 @@ export default function UIButtonWithForm({
         window.scrollTo(0, scrollY);
       }
     }
-    // cleanup on unmount in case
     return () => {
       document.body.style.position = "";
       document.body.style.top = "";
@@ -70,10 +77,33 @@ export default function UIButtonWithForm({
     };
   }, [isOpen]);
 
-  function onSubmit(data: FormValues) {
-    console.log("Submitted:", data);
-    setIsOpen(false);
-    reset();
+  async function onSubmit(data: FormValues) {
+    setBusy(true);
+    setServerError(null);
+    setSuccessMessage(null);
+
+    try {
+      const resp = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!resp.ok) {
+        const text = await resp.text().catch(() => null);
+        throw new Error(text || `Server returned ${resp.status}`);
+      }
+
+      const json = await resp.json().catch(() => ({}));
+      setSuccessMessage(json?.message || "Заявка успешно отправлена");
+      reset();
+      setTimeout(() => setIsOpen(false), 900);
+    } catch (err: any) {
+      console.error("send-email error:", err);
+      setServerError(err?.message || "Ошибка отправки. Попробуйте позже.");
+    } finally {
+      setBusy(false);
+    }
   }
 
   return (
@@ -84,6 +114,8 @@ export default function UIButtonWithForm({
         onClick={(e) => {
           setIsOpen((p) => !p);
           onClick?.(e as any);
+          setServerError(null);
+          setSuccessMessage(null);
         }}
       >
         {children}
@@ -97,7 +129,7 @@ export default function UIButtonWithForm({
           onClick={() => setIsOpen(false)}
         >
           <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <h2>Оставить заявку</h2>
+            <h2 className="modal-title">Оставить заявку</h2>
 
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
               <div className="form-row">
@@ -130,7 +162,11 @@ export default function UIButtonWithForm({
                 {errors.contactMethod && (
                   <div className="error">{errors.contactMethod.message}</div>
                 )}
+                <div className="note">
+                  Если выбран Telegram — появится поле для тега пользователя.
+                </div>
               </div>
+
               <div className="form-row">
                 <label className="form-label">Телефон</label>
                 <input
@@ -145,6 +181,34 @@ export default function UIButtonWithForm({
                   <div className="error">{errors.phone.message}</div>
                 )}
               </div>
+
+              {contactMethod === "telegram" && (
+                <div className="form-row">
+                  <label className="form-label">
+                    Telegram тег (например @username)
+                  </label>
+                  <input
+                    className="form-input"
+                    {...register("telegramHandle", {
+                      required: "Укажите Telegram тег, т.к. выбран Telegram",
+                      minLength: { value: 2, message: "Слишком короткий тег" },
+                      validate: (v) => {
+                        if (!v || v.trim() === "")
+                          return "Укажите Telegram тег";
+                        const val = v.startsWith("@") ? v.slice(1) : v;
+                        if (!/^[A-Za-z0-9_]{2,32}$/.test(val))
+                          return "Неверный формат тега (разрешены буквы, цифры, _)";
+                        return true;
+                      },
+                    })}
+                    placeholder="@username"
+                  />
+                  {errors.telegramHandle && (
+                    <div className="error">{errors.telegramHandle.message}</div>
+                  )}
+                </div>
+              )}
+
               <div className="form-row">
                 <label className="form-label">E-mail</label>
                 <input
@@ -162,10 +226,7 @@ export default function UIButtonWithForm({
                 )}
               </div>
 
-              <div
-                className="form-row"
-                style={{ display: "flex", alignItems: "center" }}
-              >
+              <div className="form-row form-row-inline">
                 <input
                   id="agree"
                   type="checkbox"
@@ -175,7 +236,7 @@ export default function UIButtonWithForm({
                       "Необходимо согласиться с политикой конфиденциальности",
                   })}
                 />
-                <label htmlFor="agree">
+                <label htmlFor="agree" className="form-label-inline">
                   Я согласен с{" "}
                   <a href="#" onClick={(e) => e.preventDefault()}>
                     политикой конфиденциальности
@@ -186,16 +247,28 @@ export default function UIButtonWithForm({
                 <div className="error">{errors.agree.message}</div>
               )}
 
+              {serverError && (
+                <div className="error" style={{ marginBottom: 8 }}>
+                  {serverError}
+                </div>
+              )}
+              {successMessage && (
+                <div className="success" style={{ marginBottom: 8 }}>
+                  {successMessage}
+                </div>
+              )}
+
               <div className="form-actions">
                 <button
                   type="button"
                   className="btn-ghost"
                   onClick={() => setIsOpen(false)}
+                  disabled={busy}
                 >
                   Отмена
                 </button>
-                <button type="submit" className="btn-primary">
-                  Отправить
+                <button type="submit" className="btn-primary" disabled={busy}>
+                  {busy ? "Отправка..." : "Отправить"}
                 </button>
               </div>
             </form>
