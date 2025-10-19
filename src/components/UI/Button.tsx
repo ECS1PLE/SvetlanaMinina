@@ -100,7 +100,6 @@ export default function UIButtonWithForm({
             <h2>Оставить заявку</h2>
 
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
-              {/* Фамилия Имя */}
               <div className="form-row">
                 <label className="form-label">Фамилия Имя</label>
                 <input
@@ -116,7 +115,6 @@ export default function UIButtonWithForm({
                 )}
               </div>
 
-              {/* Удобный способ связи */}
               <div className="form-row">
                 <label className="form-label">Удобный способ связи</label>
                 <select
@@ -133,8 +131,6 @@ export default function UIButtonWithForm({
                   <div className="error">{errors.contactMethod.message}</div>
                 )}
               </div>
-
-              {/* Телефон */}
               <div className="form-row">
                 <label className="form-label">Телефон</label>
                 <input
@@ -149,8 +145,6 @@ export default function UIButtonWithForm({
                   <div className="error">{errors.phone.message}</div>
                 )}
               </div>
-
-              {/* E-mail */}
               <div className="form-row">
                 <label className="form-label">E-mail</label>
                 <input
@@ -168,7 +162,6 @@ export default function UIButtonWithForm({
                 )}
               </div>
 
-              {/* Чекбокс */}
               <div
                 className="form-row"
                 style={{ display: "flex", alignItems: "center" }}
