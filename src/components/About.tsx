@@ -2,13 +2,15 @@ import React from "react";
 import { AboutCard } from "./UI/AbotCard";
 import { User } from "lucide-react";
 
+const minina = new URL("../images/minina_1.jpg", import.meta.url).href;
+
 export const About: React.FC = () => (
   <section id="about">
     <h2>Обо мне</h2>
 
     <div className="about-container">
       <div className="about-photo">
-        <img src="/images/minina_1.jpg" alt="Светлана Минина" />
+        <img src={minina} alt="Светлана Минина" />
       </div>
 
       <div className="about-content">
