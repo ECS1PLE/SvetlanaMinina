@@ -19,10 +19,7 @@ export const Format: React.FC = () => (
           "Единичные или пакетные сессии по запросу",
         ]}
       >
-        <img
-          src="../src/images/certificate1.jpg"
-          className="certificate-class"
-        />
+        <img src="/images/certificate1.jpg" className="certificate-class" />
       </FormatCard>
       <FormatCard
         icon=<LucideNotebook />
@@ -38,7 +35,7 @@ export const Format: React.FC = () => (
         ]}
       >
         <img
-          src="/src/images/certificate2.jpg"
+          src="/images/certificate2.jpg"
           className="certificate-class"
           style={{ marginTop: "20px" }}
         />
