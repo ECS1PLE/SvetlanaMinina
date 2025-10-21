@@ -8,7 +8,7 @@ export const About: React.FC = () => (
 
     <div className="about-container">
       <div className="about-photo">
-        <img src="/minina_1.jpg" alt="Светлана Минина" />
+        <img src="src/images/minina_1.jpg" alt="Светлана Минина" />
       </div>
 
       <div className="about-content">

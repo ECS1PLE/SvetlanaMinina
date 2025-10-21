@@ -718,3 +718,7 @@ header.header {
     padding: 8px 12px;
   }
 }
+
+.certificate-class {
+  width: 100%;
+}

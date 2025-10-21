@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import BlockWithIcon from "./BlockWithIcon";
 import { CircleCheck } from "lucide-react";
 
@@ -10,6 +10,7 @@ interface FormatCardProps {
   iconSize?: number;
   iconColor?: string;
   bgColor?: string;
+  children?: React.ReactNode;
 }
 
 export const FormatCard: React.FC<FormatCardProps> = ({
@@ -20,6 +21,7 @@ export const FormatCard: React.FC<FormatCardProps> = ({
   iconSize = 32,
   iconColor,
   bgColor,
+  children,
 }) => (
   <div className="format-card">
     <BlockWithIcon
@@ -57,6 +59,7 @@ export const FormatCard: React.FC<FormatCardProps> = ({
           <span style={{ fontSize: "14px", flex: "1 1 auto" }}>{item}</span>
         </div>
       ))}
+      {children}
     </div>
   </div>
 );

@@ -18,7 +18,9 @@ export const Format: React.FC = () => (
           "Длительность: 60-90 минут",
           "Единичные или пакетные сессии по запросу",
         ]}
-      />
+      >
+        <img src="/src/images/certificate1.jpg" className="certificate-class" />
+      </FormatCard>
       <FormatCard
         icon=<LucideNotebook />
         title="Пример пакетной сессии"
@@ -31,7 +33,13 @@ export const Format: React.FC = () => (
           "Дорожная карта достижения цели",
           "Внедрение и сопровождение",
         ]}
-      />
+      >
+        <img
+          src="/src/images/certificate2.jpg"
+          className="certificate-class"
+          style={{ marginTop: "20px" }}
+        />
+      </FormatCard>
       <FormatCard
         icon=<LucideLaptop />
         title="Результат для клиента"
