@@ -1,187 +1,106 @@
-// Header.tsx
-import React, { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
-export const Header: React.FC = () => {
-  const [open, setOpen] = useState(false);
-  const firstLinkRef = useRef<HTMLAnchorElement | null>(null);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-  }, [open]);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-      if (e.key === "Tab" && open) {
-      }
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [open]);
-
-  useEffect(() => {
-    if (open && firstLinkRef.current) {
-      firstLinkRef.current.focus();
-    }
-  }, [open]);
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navItems = [
+    { name: "Главная", href: "#home" },
+    { name: "Для руководителей", href: "#leaders" },
+    { name: "Для бизнеса", href: "#business" },
+    { name: "Мои кейсы", href: "#cases" },
+    { name: "Обо мне", href: "#about" },
+    { name: "Контакты", href: "#contact" },
+  ];
 
   return (
-    <header className="header">
-      <div className="logo">
-        <div
-          style={{
-            backgroundColor: "var(--primary)",
-            width: "30px",
-            height: "30px",
-            borderRadius: "3px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+    <header className="site-header">
+      <div className="header-inner">
+        <div className="brand">
+          <div
+            style={{
+              width: 32,
+              height: 32,
+              background: "#F97316",
+              borderRadius: 8,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ height: 14, width: 14, color: "#fff" }}
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+              <path
+                fillRule="evenodd"
+                d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm9 4a1 1 0 11-2 0 1 1 0 012 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+          <span style={{ fontWeight: 700 }}>Светлана Минина</span>
+        </div>
+
+        <nav className="nav">
+          {navItems.map((item) => (
+            <a key={item.name} href={item.href}>
+              {item.name}
+            </a>
+          ))}
+        </nav>
+
+        <button
+          className="mobile-toggle"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="menu"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
+            style={{ height: 20, width: 20 }}
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-            style={{ color: "#fff" }}
           >
-            <circle cx="12" cy="12" r="10"></circle>
-            <circle cx="12" cy="12" r="6"></circle>
-            <circle cx="12" cy="12" r="2"></circle>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
           </svg>
-        </div>
-        <span>Светлана Минина</span>
+        </button>
       </div>
 
-      <nav>
-        <ul>
-          <li>
-            <a href="#about" ref={firstLinkRef}>
-              Обо мне
-            </a>
-          </li>
-          <li>
-            <a href="#path">Мой путь</a>
-          </li>
-          <li>
-            <a href="#help">Чем я могу быть вам полезна</a>
-          </li>
-          <li>
-            <a href="#format">Формат работы</a>
-          </li>
-          <li>
-            <a href="#reviews">Отзывы</a>
-          </li>
-          <li>
-            <a href="#contacts">Контакты</a>
-          </li>
-        </ul>
-      </nav>
-
-      <button
-        className="burger-btn"
-        aria-expanded={open}
-        aria-controls="mobile-menu"
-        aria-label={open ? "Закрыть меню" : "Открыть меню"}
-        onClick={() => setOpen((s) => !s)}
-      >
-        <span className={`burger ${open ? "open" : ""}`} />
-      </button>
-
-      <div
-        id="mobile-menu"
-        className={`mobile-menu ${open ? "mobile-menu--open" : ""}`}
-        role="dialog"
-        aria-modal="true"
-      >
-        <div className="mobile-backdrop" onClick={() => setOpen(false)} />
-        <div className="mobile-panel" aria-hidden={!open}>
-          <div className="mobile-panel__top">
-            <div className="logo" style={{ gap: 10 }}>
-              <div
-                style={{
-                  backgroundColor: "var(--primary)",
-                  width: "28px",
-                  height: "28px",
-                  borderRadius: "3px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
+      {isMenuOpen && (
+        <div
+          style={{ background: "#fff", borderTop: "1px solid var(--border)" }}
+        >
+          <div
+            className="container"
+            style={{
+              padding: "12px 0",
+              display: "flex",
+              flexDirection: "column",
+              gap: 8,
+            }}
+          >
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={() => setIsMenuOpen(false)}
+                style={{ color: "var(--muted)" }}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                  style={{ color: "#fff" }}
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <circle cx="12" cy="12" r="6"></circle>
-                  <circle cx="12" cy="12" r="2"></circle>
-                </svg>
-              </div>
-              <span>Светлана Минина</span>
-            </div>
-
-            <button
-              className="burger-close"
-              onClick={() => setOpen(false)}
-              aria-label="Закрыть меню"
-            >
-              ✕
-            </button>
+                {item.name}
+              </a>
+            ))}
           </div>
-
-          <nav className="mobile-nav">
-            <ul>
-              <li>
-                <a href="#about" onClick={() => setOpen(false)}>
-                  Обо мне
-                </a>
-              </li>
-              <li>
-                <a href="#path" onClick={() => setOpen(false)}>
-                  Мой путь
-                </a>
-              </li>
-              <li>
-                <a href="#help" onClick={() => setOpen(false)}>
-                  Чем я могу быть вам полезна
-                </a>
-              </li>
-              <li>
-                <a href="#format" onClick={() => setOpen(false)}>
-                  Формат работы
-                </a>
-              </li>
-              <li>
-                <a href="#reviews" onClick={() => setOpen(false)}>
-                  Отзывы
-                </a>
-              </li>
-              <li>
-                <a href="#contacts" onClick={() => setOpen(false)}>
-                  Контакты
-                </a>
-              </li>
-            </ul>
-          </nav>
         </div>
-      </div>
+      )}
     </header>
   );
 };
+
+export default Header;

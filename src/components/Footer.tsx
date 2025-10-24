@@ -1,31 +1,44 @@
-import React from "react";
-import BlockWithIcon from "./UI/BlockWithIcon";
-import { Target } from "lucide-react";
+import { UserIcon } from "@heroicons/react/24/outline";
 
-export const Footer: React.FC = () => (
-  <footer>
-    <div
-      className="logo"
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 8,
-        marginBottom: 12,
-      }}
-    >
-      <BlockWithIcon
-        icon={<Target size={16} />}
-        size={32}
-        iconSize={16}
-        bgColor="rgb(255 255 255 / 0.2)"
-        iconColor="white"
-      />
-      <span>Светлана Минина</span>
-    </div>
-    <p>
-      Эксперт по системному управлению для руководителей и собственников бизнеса
-    </p>
-    <p>© 2024 Светлана Минина. Все права защищены.</p>
-  </footer>
-);
+const Footer = () => {
+  return (
+    <footer className="site-footer">
+      <div className="container">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 8,
+            marginBottom: 12,
+          }}
+        >
+          <div
+            style={{
+              width: 40,
+              height: 40,
+              background: "#F97316",
+              borderRadius: 8,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <UserIcon style={{ width: 16, height: 16, color: "#fff" }} />
+          </div>
+          <span style={{ fontWeight: 700 }}>Светлана Минина</span>
+        </div>
+
+        <p style={{ color: "#9CA3AF", marginBottom: 12 }}>
+          Эксперт по системному управлению для руководителей и собственников
+          бизнеса
+        </p>
+        <p style={{ color: "#6B7280", fontSize: 12 }}>
+          © {new Date().getFullYear()} Светлана Минина. Все права защищены.
+        </p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
