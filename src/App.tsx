@@ -39,9 +39,13 @@ import {
 import {
   Brain,
   Building,
+  ChartColumn,
   Clock,
   Eye,
   MessageSquare,
+  Rocket,
+  Share2,
+  Shield,
   Target,
   User,
   Users,
@@ -275,65 +279,111 @@ const App: React.FC = () => {
   const businessBenefits = [
     {
       variant: "warm",
-      icon: <LinkIcon style={{ width: 20, height: 20 }} />,
+      icon: <ChartColumn style={{ width: 24, height: 24 }} />,
       title: "Каскадирование стратегии",
       description:
         "От совета директоров до линейного сотрудника через цели, метрики и ежедневные действия.",
+      cardStyle: {
+        background: "linear-gradient(90deg, #f59e0b, #f97316)",
+        width: "48px",
+        height: "48px",
+      },
+      iconStyle: { color: "white" },
     },
     {
       variant: "warm",
-      icon: <UsersIcon style={{ width: 20, height: 20 }} />,
+      icon: <UsersIcon style={{ width: 24, height: 24 }} />,
       title: "Топ-команда и лидерство",
       description:
         "Создание или трансформация топ-команды как единого организма с общей ответственностью.",
+      cardStyle: {
+        background: "linear-gradient(90deg, #3b82f6 , #6366f1 )",
+        width: "48px",
+        height: "48px",
+      },
+      iconStyle: { color: "white" },
     },
     {
       variant: "warm",
-      icon: <LinkIcon style={{ width: 20, height: 20 }} />,
+      icon: <Share2 style={{ width: 24, height: 24 }} />,
       title: "Интеграция отделов",
       description:
         "Процессы согласования, совместные KPI и ритуалы, устраняющие «информационные стены».",
+      cardStyle: {
+        background: "linear-gradient(90deg, #22c55e  , #10b981  )",
+        width: "48px",
+        height: "48px",
+      },
+      iconStyle: { color: "white" },
     },
     {
       variant: "warm",
-      icon: <ShieldCheckIcon style={{ width: 20, height: 20 }} />,
+      icon: <Shield style={{ width: 24, height: 24 }} />,
       title: "Антикризисное управление",
       description:
         "Быстрая стабилизация, сохранение команды и поиск точек роста даже в нестабильности.",
+      cardStyle: {
+        background: "linear-gradient(90deg, #a855f7  , #ec4899  )",
+        width: "48px",
+        height: "48px",
+      },
+      iconStyle: { color: "white" },
     },
     {
       variant: "warm",
-      icon: <BuildingOfficeIcon style={{ width: 20, height: 20 }} />,
+      icon: <Building style={{ width: 24, height: 24 }} />,
       title: "Культура через лидерство",
       description:
         "Ценности транслируются не словами, а поведением руководителей.",
+      cardStyle: {
+        background: "linear-gradient(90deg, #ef4444   , #f43f5e   )",
+        width: "48px",
+        height: "48px",
+      },
+      iconStyle: { color: "white" },
     },
   ];
 
   const businessFormats = [
     {
       variant: "warm",
-      icon: <DocumentTextIcon style={{ width: 20, height: 20 }} />,
+      icon: <Brain style={{ width: 24, height: 24 }} />,
       title: "Стратегические сессии",
       description: "С топ-командой (1–3 дня, онлайн/офлайн)",
+      iconBoxStyle: {
+        background: "linear-gradient(90deg, #d97706  , #ea580c  )",
+        iconColor: "white",
+      },
     },
     {
       variant: "warm",
-      icon: <EyeIcon style={{ width: 20, height: 20 }} />,
+      icon: <Eye style={{ width: 24, height: 24 }} />,
       title: "Диагностика зрелости",
       description: "Экспресс-оценка «точек роста» управленческой зрелости",
+      iconBoxStyle: {
+        background: "linear-gradient(90deg, #d97706  , #ea580c  )",
+        iconColor: "white",
+      },
     },
     {
       variant: "warm",
-      icon: <RocketLaunchIcon style={{ width: 20, height: 20 }} />,
+      icon: <Rocket style={{ width: 24, height: 24 }} />,
       title: "Система устойчивого роста",
       description: "Сопровождение трансформации в течение 3–6 месяцев",
+      iconBoxStyle: {
+        background: "linear-gradient(90deg, #d97706  , #ea580c  )",
+        iconColor: "white",
+      },
     },
     {
       variant: "warm",
-      icon: <ShieldExclamationIcon style={{ width: 20, height: 20 }} />,
+      icon: <Shield style={{ width: 24, height: 24 }} />,
       title: "Антикризисный модуль",
       description: "Быстрая стабилизация + план выхода на рост",
+      iconBoxStyle: {
+        background: "linear-gradient(90deg, #d97706  , #ea580c  )",
+        iconColor: "white",
+      },
     },
   ];
 
@@ -478,12 +528,14 @@ const App: React.FC = () => {
 
             <div className="grid cols-3 gap-16 mb-24">
               {businessBenefits.map((b, idx) => (
-                <BenefitCard
+                <ProblemCard
                   key={b.title || idx}
-                  variant={b.variant as "warm" | "light"}
+                  variant={b.variant}
                   icon={b.icon}
                   title={b.title}
                   description={b.description}
+                  cardStyle={b.cardStyle}
+                  iconStyle={b.iconStyle}
                 />
               ))}
             </div>
@@ -497,6 +549,7 @@ const App: React.FC = () => {
                   icon={f.icon}
                   title={f.title}
                   description={f.description}
+                  iconBoxStyle={f.iconBoxStyle}
                 />
               ))}
             </div>
@@ -535,7 +588,10 @@ const App: React.FC = () => {
         <section id="about" className="section">
           <div className="container">
             <SectionTitle title="Обо мне" />
-            <div className="max-width-4xl centered mb-24">
+            <div
+              className="max-width-6xl centered mb-24"
+              style={{ textAlign: "center" }}
+            >
               <p className="muted mb-12">
                 Я — Светлана Минина, эксперт по системному управлению, коуч и
                 консультант для руководителей и компаний. Моя миссия — помочь

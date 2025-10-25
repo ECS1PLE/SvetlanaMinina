@@ -26,7 +26,12 @@ const CaseCard: FC<CaseCardProps> = ({
   return (
     <div className={`card-base card-hover p-6 rounded-lg ${cardClass}`}>
       <div
-        style={{ display: "flex", alignItems: "flex-start", marginBottom: 16 }}
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          marginBottom: 16,
+          flexDirection: "column",
+        }}
       >
         <div className="icon-box medium" style={{ ...iconBg, marginRight: 16 }}>
           {icon}
