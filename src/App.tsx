@@ -36,6 +36,7 @@ import {
   ShieldExclamationIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
+import { Brain, MessageSquare, Target, Users } from "lucide-react";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -139,38 +140,48 @@ const App: React.FC = () => {
 
   const leaderBenefits = [
     {
-      icon: <TagIcon style={{ width: 20, height: 20 }} />,
-      title: "Индивидуальная программа развития",
-      description: "Персональная дорожная карта...",
-      iconBoxStyle: {
-        background: "linear-gradient(90deg,#3b82f6,#6366f1) !important",
-        color: "#fff",
-      },
-      iconStyle: { width: 20, height: 20, color: "#fff" },
-    },
-    {
-      icon: <GlobeAltIcon style={{ width: 20, height: 20 }} />,
-      title: "Коучинг стратегического мышления",
-      description:
-        "Переход от оперативного режима к системному видению даже в условиях кризиса.",
-    },
-    {
-      icon: <UserIconSolid style={{ width: 20, height: 20 }} />,
+      icon: <Target style={{ width: 20, height: 20 }} />,
       title: "Создание команды мечты",
       description:
         "Делегирование ответственности, а не задач. Среда для инициативы без контроля.",
+      cardStyle: { background: "linear-gradient(90deg, #6366f1, #3b82f6)" },
+      iconStyle: { color: "white" },
     },
     {
-      icon: <ChatBubbleLeftIcon style={{ width: 20, height: 20 }} />,
+      icon: <Brain style={{ width: 20, height: 20 }} />,
+      title: "Коучинг стратегического мышления",
+      description:
+        "Переход от оперативного режима к системному видению даже в условиях кризиса.",
+      cardStyle: { background: "linear-gradient(90deg, #22c55e , #10b981 )" },
+      iconStyle: { color: "white" },
+    },
+    {
+      icon: <Users style={{ width: 20, height: 20 }} />,
+      title: "Создание команды мечты",
+      description:
+        "Делегирование ответственности, а не задач. Среда для инициативы без контроля.",
+      cardStyle: { background: "linear-gradient(90deg, #a855f7  , #ec4899  )" },
+      iconStyle: { color: "white" },
+    },
+    {
+      icon: <MessageSquare style={{ width: 20, height: 20 }} />,
       title: "Коммуникация и влияние",
       description:
         "Разрешение конфликтов, влияние через ясность, эффективное взаимодействие.",
+      cardStyle: {
+        background: "linear-gradient(90deg, #f59e0b   , #f97316   )",
+      },
+      iconStyle: { color: "white" },
     },
     {
-      icon: <HeartIconSolid style={{ width: 20, height: 20 }} />,
+      icon: <HeartIcon style={{ width: 20, height: 20 }} />,
       title: "Личные ценности как основа",
       description:
         "Быть собой и эффективно вести за собой. Не терять внутренний компас.",
+      cardStyle: {
+        background: "linear-gradient(90deg, #ef4444   , #f43f5e   )",
+      },
+      iconStyle: { color: "white" },
     },
   ];
 
@@ -372,12 +383,14 @@ const App: React.FC = () => {
             <SectionTitle title="Чем я могу быть полезна:" />
 
             <div className="grid cols-3 gap-16 mb-24">
-              {leaderBenefits.map((b, idx) => (
-                <BenefitCard
-                  key={b.title || idx}
-                  icon={b.icon}
-                  title={b.title}
-                  description={b.description}
+              {leaderBenefits.map((p, idx) => (
+                <ProblemCard
+                  key={p.title || idx}
+                  icon={p.icon}
+                  title={p.title}
+                  description={p.description}
+                  cardStyle={p.cardStyle}
+                  iconStyle={p.iconStyle}
                 />
               ))}
             </div>
