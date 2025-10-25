@@ -36,7 +36,7 @@ import {
   ShieldExclamationIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
-import { Brain, MessageSquare, Target, Users } from "lucide-react";
+import { Brain, Clock, Eye, MessageSquare, Target, Users } from "lucide-react";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -187,35 +187,31 @@ const App: React.FC = () => {
 
   const leaderFormats = [
     {
-      icon: <UserIconSolid style={{ width: 20, height: 20 }} />,
+      icon: <UserIconSolid style={{ width: 24, height: 24 }} />,
       title: "Индивидуальный коучинг",
       description: "3–6 месяцев, 1–2 занятия в месяц",
+      iconBoxStyle: {
+        background: "linear-gradient(90deg, #2563eb , #4f46e5 )",
+        iconColor: "white",
+      },
     },
     {
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ width: 20, height: 20 }}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 1112 0m-6-8a2 2 0 100 4m0-4a2 2 0 110 4m0 8a2 2 0 110-4m0 4a2 2 0 100-4m-2 8h10M20 4a2 2 0 100 4h-2m6 6v6m-6 0a2 2 0 100 4m2-2a2 2 0 10-2-2H9M9 16V6"
-          />
-        </svg>
-      ),
-      titleAlt: "Интенсив «Команда за 90 дней»",
+      icon: <Clock style={{ width: 24, height: 24 }} />,
       title: "Интенсив «Команда за 90 дней»",
       description: "Акцент на делегировании, доверии и развитии команды",
+      iconBoxStyle: {
+        background: "linear-gradient(90deg, #2563eb , #4f46e5 )",
+        iconColor: "white",
+      },
     },
     {
-      icon: <EyeIcon style={{ width: 20, height: 20 }} />,
+      icon: <Eye style={{ width: 24, height: 24 }} />,
       title: "Стратегическая сессия",
       description: "Разовая сессия для взгляда со стороны «здесь и сейчас»",
+      iconBoxStyle: {
+        background: "linear-gradient(90deg, #2563eb , #4f46e5 )",
+        iconColor: "white",
+      },
     },
   ];
 
@@ -395,14 +391,17 @@ const App: React.FC = () => {
               ))}
             </div>
 
+            <SectionTitle title="Формат работы:" />
+
             <div className="centered mb-24">
-              <div className="grid cols-3 gap-12 max-width-4xl">
+              <div className="grid cols-3 gap-12 max-width-5xl">
                 {leaderFormats.map((f, idx) => (
                   <FormatCard
                     key={f.title || idx}
                     icon={f.icon}
                     title={f.title}
                     description={f.description}
+                    iconBoxStyle={f.iconBoxStyle}
                   />
                 ))}
               </div>
