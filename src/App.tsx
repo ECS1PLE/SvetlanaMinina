@@ -36,7 +36,16 @@ import {
   ShieldExclamationIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
-import { Brain, Clock, Eye, MessageSquare, Target, Users } from "lucide-react";
+import {
+  Brain,
+  Building,
+  Clock,
+  Eye,
+  MessageSquare,
+  Target,
+  User,
+  Users,
+} from "lucide-react";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -222,13 +231,17 @@ const App: React.FC = () => {
       title: "Стратегия на бумаге",
       description:
         "Стратегия «висит в презентации», но не влияет на повседневные решения.",
+      cardStyle: { backgroundColor: "rgb(220 38 38 / 0.1)" },
+      iconStyle: { color: "rgb(220 38 38)" },
     },
     {
       variant: "warm",
-      icon: <UserGroupIcon style={{ width: 20, height: 20 }} />,
+      icon: <Users style={{ width: 20, height: 20 }} />,
       title: "Изоляция руководителей",
       description:
         "Руководители работают изолированно — у каждого свои цели и приоритеты.",
+      cardStyle: { backgroundColor: "rgb(202 138 4 / 0.1)" },
+      iconStyle: { color: "rgb(202 138 4)" },
     },
     {
       variant: "warm",
@@ -236,20 +249,26 @@ const App: React.FC = () => {
       title: "Конфликты между отделами",
       description:
         "Межведомственные проекты тонут в согласованиях и недопонимании.",
+      cardStyle: { backgroundColor: "rgb(234 88 12 / 0.1)" },
+      iconStyle: { color: "rgb(234 88 12)" },
     },
     {
       variant: "warm",
-      icon: <SpeakerWaveIcon style={{ width: 20, height: 20 }} />,
+      icon: <Building style={{ width: 20, height: 20 }} />,
       title: "Ценности на стене",
       description:
         "Ценности компании — это лишь декларация, а не поведение лидеров.",
+      cardStyle: { backgroundColor: "rgb(75 85 99 / 0.1)" },
+      iconStyle: { color: "rgb(75 85 99)" },
     },
     {
       variant: "warm",
-      icon: <UsersIcon style={{ width: 20, height: 20 }} />,
+      icon: <Users style={{ width: 20, height: 20 }} />,
       title: "Компетенции не соответствуют",
       description:
         "Компетенции ваших подчиненных не отвечают запросам бизнеса.",
+      cardStyle: { backgroundColor: "rgb(22 163 74 / 0.1)" },
+      iconStyle: { color: "rgb(22 163 74)" },
     },
   ];
 
@@ -445,10 +464,12 @@ const App: React.FC = () => {
               {businessProblems.map((p, idx) => (
                 <ProblemCard
                   key={p.title || idx}
-                  variant={p.variant as "warm" | "light"}
+                  variant={p.variant}
                   icon={p.icon}
                   title={p.title}
                   description={p.description}
+                  cardStyle={p.cardStyle}
+                  iconStyle={p.iconStyle}
                 />
               ))}
             </div>

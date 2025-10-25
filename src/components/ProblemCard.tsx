@@ -4,7 +4,7 @@ interface ProblemCardProps {
   icon: ReactNode;
   title: string;
   description: string;
-  variant?: "light" | "warm";
+  variant?: "light" | "warm" | any;
   cardStyle?: CSSProperties;
   iconStyle?: CSSProperties;
 }
