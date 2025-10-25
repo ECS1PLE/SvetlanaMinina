@@ -3,10 +3,11 @@ import { FC, ReactNode } from "react";
 interface CaseCardProps {
   icon: ReactNode;
   client: string;
-  result: string;
+  result: { highlight: string; subtext?: string };
   challenge: string;
   solution: string;
   variant?: "light" | "warm";
+  highlightColor?: string; // новый проп
 }
 
 const CaseCard: FC<CaseCardProps> = ({
@@ -16,6 +17,7 @@ const CaseCard: FC<CaseCardProps> = ({
   challenge,
   solution,
   variant = "light",
+  highlightColor = "#2563EB", // по умолчанию синий
 }) => {
   const cardClass = variant === "warm" ? "card-orange" : "card-blue";
   const iconBg =
@@ -36,9 +38,33 @@ const CaseCard: FC<CaseCardProps> = ({
         <div className="icon-box medium" style={{ ...iconBg, marginRight: 16 }}>
           {icon}
         </div>
-        <div>
+        <div style={{ marginBottom: 16 }}>
           <h3 className="title-strong">{client}</h3>
-          <p style={{ color: "#2563EB", fontWeight: 600 }}>{result}</p>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 4 }}>
+            <p
+              style={{
+                color: highlightColor, // цвет теперь настраиваемый
+                fontWeight: 600,
+                margin: 0,
+                fontSize: 24,
+                lineHeight: 0.5,
+              }}
+            >
+              {result.highlight}
+            </p>
+            {result.subtext && (
+              <p
+                style={{
+                  color: "#000",
+                  margin: 0,
+                  fontSize: 12,
+                  lineHeight: 1,
+                }}
+              >
+                {result.subtext}
+              </p>
+            )}
+          </div>
         </div>
       </div>
 
