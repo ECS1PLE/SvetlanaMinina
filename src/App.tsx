@@ -429,6 +429,7 @@ const App: React.FC = () => {
             <SectionTitle
               title="«Руководитель нового поколения: от исполнителя — к архитектору»"
               subtitle="ИНДИВИДУАЛЬНАЯ РАБОТА"
+              subtitleVariant="blue"
             />
 
             <p className="lead centered mb-24">
