@@ -43,7 +43,7 @@ const CaseCard: FC<CaseCardProps> = ({
           <div style={{ display: "flex", alignItems: "flex-start", gap: 4 }}>
             <p
               style={{
-                color: highlightColor, // цвет теперь настраиваемый
+                color: highlightColor,
                 fontWeight: 600,
                 margin: 0,
                 fontSize: 24,

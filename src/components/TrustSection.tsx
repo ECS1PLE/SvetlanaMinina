@@ -1,9 +1,10 @@
+// TrustSection.tsx
 import { FC } from "react";
 import TrustCard from "./TrustCard";
 
 const TrustSection: FC = () => {
   return (
-    <section style={{ padding: "48px 16px" }}>
+    <section style={{ padding: "0px" }}>
       <div className="container" style={{ maxWidth: 1100 }}>
         <h2
           className="title-strong text-center"
@@ -15,7 +16,14 @@ const TrustSection: FC = () => {
           Более 13 лет опыта в управлении крупными компаниями и консалтинге.
         </p>
 
-        <div className="grid cols-2" style={{ marginTop: 16 }}>
+        <div
+          style={{
+            columnCount: 2,
+            columnGap: 24,
+            marginTop: 16,
+            width: "100%",
+          }}
+        >
           <TrustCard
             title="Образование и сертификации"
             items={[
@@ -25,16 +33,8 @@ const TrustSection: FC = () => {
               "Профереподготовка по управлению организацией",
             ]}
             variant="warm"
-          />
-          <TrustCard
-            title="Почему я?"
-            items={[
-              "Практикующий консультант, а не теоретик",
-              "Работаю только с уникальными системами",
-              "Не предлагаю шаблонных решений",
-              "Фокусируюсь на измеримых результатах",
-            ]}
-            variant="light"
+            height={210}
+            backgroundColor="rgb(255 251 235)"
           />
           <TrustCard
             title="Опыт и достижения"
@@ -46,6 +46,21 @@ const TrustSection: FC = () => {
               "5+ масштабных проектов реализовано",
             ]}
             variant="warm"
+            height={220}
+            backgroundColor="rgb(255 247 237)"
+          />
+          <TrustCard
+            title="Почему я?"
+            items={[
+              "Практикующий консультант, а не теоретик",
+              "Работаю только с уникальными системами",
+              "Не предлагаю шаблонных решений",
+              "Фокусируюсь на измеримых результатах",
+              "Приверженец принципа: реальные действия → реальные результаты",
+            ]}
+            variant="light"
+            height={260}
+            backgroundColor="rgb(250 250 249)"
           />
           <TrustCard
             title="Моя философия"
@@ -53,6 +68,8 @@ const TrustSection: FC = () => {
               `"Любые изменения начинаются с желания и готовности двигаться вперёд, но работают только тогда, когда за ними следуют реальные действия."`,
             ]}
             variant="warm"
+            height={162}
+            backgroundColor="rgb(254 243 199)"
           />
         </div>
       </div>
