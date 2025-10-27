@@ -62,6 +62,7 @@ const TrustCard: FC<TrustCardProps> = ({
               display: "flex",
               alignItems: "flex-start",
               fontSize: 15,
+              fontWeight: "bold",
             }}
           >
             <span style={{ marginRight: 8 }}>•</span>
