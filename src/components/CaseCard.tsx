@@ -47,8 +47,9 @@ const CaseCard: FC<CaseCardProps> = ({
                 fontWeight: 600,
                 margin: 0,
                 fontSize: 24,
-                lineHeight: 0.5,
+                lineHeight: 0.7,
               }}
+              className="highlightText"
             >
               {result.highlight}
             </p>
@@ -58,7 +59,7 @@ const CaseCard: FC<CaseCardProps> = ({
                   color: "#000",
                   margin: 0,
                   fontSize: 12,
-                  lineHeight: 1,
+                  lineHeight: 1.2,
                 }}
               >
                 {result.subtext}

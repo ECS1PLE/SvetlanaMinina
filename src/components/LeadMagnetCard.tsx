@@ -46,7 +46,10 @@ const LeadMagnetCard: FC = () => (
             микроменеджмента»
           </li>
         </ul>
-        <div style={{ display: "flex", gap: 8 }}>
+        <div
+          style={{ display: "flex", gap: 8 }}
+          className="LeadManagedFormAdapt"
+        >
           <input className="input" placeholder="Ваш email" />
           <button className="btn btn-secondary" style={{ border: 0 }}>
             Получить гид

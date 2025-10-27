@@ -23,6 +23,7 @@ const TrustSection: FC = () => {
             marginTop: 16,
             width: "100%",
           }}
+          className="TrustCardsBlock"
         >
           <TrustCard
             title="Образование и сертификации"
