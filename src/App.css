@@ -459,3 +459,21 @@ select:focus {
   display: flex;
   flex-direction: column;
 }
+
+.FormContacs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.FormContacs > p {
+  margin: 0;
+}
+
+.IconBlockForm {
+  width: 48px;
+  height: 48px;
+  background-color: rgb(254 243 199);
+  justify-content: center;
+  display: flex;
+}

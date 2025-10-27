@@ -4,7 +4,7 @@ import TrustCard from "./TrustCard";
 
 const TrustSection: FC = () => {
   return (
-    <section style={{ padding: "0px" }}>
+    <section style={{ padding: "0px", marginBottom: "-100px" }}>
       <div className="container" style={{ maxWidth: 1100 }}>
         <h2
           className="title-strong text-center"
