@@ -492,6 +492,7 @@ const App: React.FC = () => {
             <SectionTitle
               title="Отзывы клиентов"
               subtitle="Что говорят руководители и собственники бизнеса о нашей работе"
+              subtitleVariant="warm"
             />
 
             <div className="grid cols-2 gap-16">
@@ -574,6 +575,7 @@ const App: React.FC = () => {
             <SectionTitle
               title="Мои кейсы"
               subtitle="Реальные результаты для руководителей и компаний"
+              subtitleVariant="blue"
             />
 
             <div className="grid cols-2 gap-16">
