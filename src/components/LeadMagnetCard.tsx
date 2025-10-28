@@ -49,7 +49,7 @@ const LeadMagnetCard: FC = () => (
         >
           <input className="input" placeholder="Ваш email" />
           <button className="btn btn-secondary" style={{ border: 0 }}>
-            Получить гид
+            Получить гайд
           </button>
         </div>
       </div>
