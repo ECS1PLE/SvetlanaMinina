@@ -41,7 +41,15 @@ const TrustCard: FC<TrustCardProps> = ({
       className={`card-base card-hover TrustBlockAdapt p-6 ${cardClass}`}
       style={style}
     >
-      <h3 style={{ fontWeight: 700, marginBottom: 12, color: titleColor }}>
+      <h3
+        style={{
+          fontWeight: 700,
+          marginBottom: 12,
+          color: titleColor,
+          fontSize: 20.5,
+          marginTop: 0,
+        }}
+      >
         {title}
       </h3>
       <ul
