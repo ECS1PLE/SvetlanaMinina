@@ -34,7 +34,7 @@ const LeadMagnetCard: FC = () => (
         </h3>
         <p className="muted" style={{ marginBottom: 8 }}>
           Вы устали «тушить пожары» вместо того, чтобы развивать бизнес? Этот
-          сайт поможет...
+          гайд поможет...
         </p>
         <p className="muted" style={{ fontWeight: 600, marginBottom: 8 }}>
           В подарок вы получите:
