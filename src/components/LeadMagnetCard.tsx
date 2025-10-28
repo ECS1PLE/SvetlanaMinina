@@ -41,10 +41,7 @@ const LeadMagnetCard: FC = () => (
         </p>
         <ul className="muted" style={{ marginBottom: 12, paddingLeft: 16 }}>
           <li>Чек-лист «Готов ли ваш сотрудник к делегированию?»</li>
-          <li>
-            Аудиозапись «Как провести первую сессию с командой без
-            микроменеджмента»
-          </li>
+          <li>Cкрипт первой сессии с командой без микроменеджмента</li>
         </ul>
         <div
           style={{ display: "flex", gap: 8 }}

@@ -4,6 +4,7 @@ interface TrustCardProps {
   title: string;
   items?: string[];
   variant?: "light" | "warm";
+  type?: "default" | "philosophy";
   height?: string | number;
   backgroundColor?: string;
 }
@@ -19,12 +20,14 @@ const TrustCard: FC<TrustCardProps> = ({
   title,
   items = [],
   variant = "light",
+  type = "default",
   height,
   backgroundColor,
 }) => {
   const cardClass = variant === "warm" ? "card-orange" : "card-blue";
   const titleColor = variant === "warm" ? "#C2410C" : "#1E3A8A";
   const resolved = normalizeHeight(height);
+
   const style: CSSProperties = {
     height: resolved,
     minHeight: resolved,
@@ -52,32 +55,57 @@ const TrustCard: FC<TrustCardProps> = ({
       >
         {title}
       </h3>
-      <ul
-        style={{
-          listStyle: "none",
-          padding: 0,
-          margin: 0,
-          display: "flex",
-          flexDirection: "column",
-          gap: 8,
-        }}
-      >
-        {items.map((it, idx) => (
-          <li
-            key={idx}
-            className="muted"
-            style={{
-              display: "flex",
-              alignItems: "flex-start",
-              fontSize: 15,
-              fontWeight: "bold",
-            }}
-          >
-            <span style={{ marginRight: 8 }}>•</span>
-            <span>{it}</span>
-          </li>
-        ))}
-      </ul>
+
+      {type === "philosophy" ? (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 10,
+          }}
+        >
+          {items.map((it, idx) => (
+            <p
+              key={idx}
+              className="muted"
+              style={{
+                fontSize: 15,
+                fontWeight: "bold",
+                margin: 0,
+              }}
+            >
+              {it}
+            </p>
+          ))}
+        </div>
+      ) : (
+        <ul
+          style={{
+            listStyle: "none",
+            padding: 0,
+            margin: 0,
+            display: "flex",
+            flexDirection: "column",
+            gap: 8,
+          }}
+        >
+          {items.map((it, idx) => (
+            <li
+              key={idx}
+              className="muted"
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                fontSize: 15,
+                fontWeight: "bold",
+              }}
+            >
+              <span style={{ marginRight: 8 }}>•</span>
+              <span>{it}</span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
