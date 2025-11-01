@@ -148,12 +148,6 @@ const ContactFormCard: FC = () => {
         >
           {loading ? "Отправка..." : "Отправить заявку →"}
         </button>
-
-        {message && (
-          <div style={{ marginTop: 8 }}>
-            <small>{message}</small>
-          </div>
-        )}
       </form>
     </div>
   );
