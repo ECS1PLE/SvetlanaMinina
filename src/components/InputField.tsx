@@ -1,15 +1,31 @@
-import { FC } from "react";
+import { FC, ChangeEvent } from "react";
 
-const InputField: FC<{
+interface InputFieldProps {
   label: string;
   type?: string;
   placeholder?: string;
-}> = ({ label, type = "text", placeholder }) => (
+  value?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+const InputField: FC<InputFieldProps> = ({
+  label,
+  type = "text",
+  placeholder,
+  value,
+  onChange,
+}) => (
   <div>
     <label className="small" style={{ display: "block", marginBottom: 6 }}>
       {label}
     </label>
-    <input className="input" type={type} placeholder={placeholder} />
+    <input
+      className="input"
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+    />
   </div>
 );
 

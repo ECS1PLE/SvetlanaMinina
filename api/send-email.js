@@ -1,26 +1,37 @@
+// pages/api/send-email.js (или соответствующий route.js, если app-router)
 import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
+  if (req.method !== "POST")
     return res.status(405).json({ error: "Method not allowed" });
-  }
 
   try {
-    const { fullName, contactMethod, phone, telegramHandle, email, agree } =
-      req.body || {};
+    const {
+      fullName,
+      contactMethod, // если у вас есть поле способа связи — оставьте
+      phone,
+      telegramHandle,
+      email,
+      agree,
+      requestType, // теперь принимаем requestType
+    } = req.body || {};
 
-    // базовая валидация
+    // валидация
     if (!fullName || fullName.trim().length < 2)
       return res.status(400).json({ error: "Invalid or missing fullName" });
     if (!phone || phone.trim().length < 5)
       return res.status(400).json({ error: "Invalid or missing phone" });
-    if (
-      contactMethod === "telegram" &&
-      (!telegramHandle || telegramHandle.trim().length < 2)
-    )
-      return res.status(400).json({ error: "Telegram handle required" });
     if (agree !== true && agree !== "true")
       return res.status(400).json({ error: "Consent required" });
+
+    // Преобразование requestType в человекочитаемый текст
+    const requestTypeMap = {
+      individual: "Индивидуальная работа",
+      business: "Для бизнеса",
+      strategy: "Стратегическая сессия",
+      consultation: "Консультация",
+    };
+    const requestTypeLabel = requestTypeMap[requestType] || requestType || "—";
 
     const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, FROM_EMAIL, TO_EMAIL } =
       process.env;
@@ -47,23 +58,31 @@ export default async function handler(req, res) {
       },
     });
 
+    const escapeHtml = (unsafe = "") =>
+      String(unsafe)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
     const html = `
       <h2>Новая заявка с сайта</h2>
-      <p><strong>ФИО:</strong> ${fullName}</p>
-      <p><strong>Способ связи:</strong> ${contactMethod}</p>
-      <p><strong>Телефон:</strong> ${phone}</p>
+      <p><strong>ФИО:</strong> ${escapeHtml(fullName)}</p>
+      <p><strong>Телефон:</strong> ${escapeHtml(phone)}</p>
+      ${email ? `<p><strong>E-mail:</strong> ${escapeHtml(email)}</p>` : ""}
       ${
-        contactMethod === "telegram"
-          ? `<p><strong>Telegram:</strong> ${telegramHandle}</p>`
+        telegramHandle
+          ? `<p><strong>Telegram:</strong> ${escapeHtml(telegramHandle)}</p>`
           : ""
       }
-      ${email ? `<p><strong>E-mail:</strong> ${email}</p>` : ""}
+      <p><strong>Тип запроса:</strong> ${escapeHtml(requestTypeLabel)}</p>
       <hr/>
       <p>Дата: ${new Date().toLocaleString()}</p>
     `;
 
     await transporter.sendMail({
-      from: FROM_EMAIL,
+      from: FROM_EMAIL, // Gmail может заменить на SMTP_USER
       to: TO_EMAIL,
       subject: `Новая заявка: ${fullName}`,
       html,
