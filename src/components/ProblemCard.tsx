@@ -7,6 +7,7 @@ interface ProblemCardProps {
   variant?: "light" | "warm" | any;
   cardStyle?: CSSProperties;
   iconStyle?: CSSProperties;
+  titleFontSize?: string | number;
 }
 
 const ProblemCard: FC<ProblemCardProps> = ({
@@ -16,6 +17,7 @@ const ProblemCard: FC<ProblemCardProps> = ({
   variant = "light",
   cardStyle,
   iconStyle,
+  titleFontSize,
 }) => {
   const cardClass = variant === "warm" ? "card-orange" : "card-blue";
   const defaultIconBg =
@@ -36,7 +38,10 @@ const ProblemCard: FC<ProblemCardProps> = ({
       >
         {icon}
       </div>
-      <h3 className="title-strong" style={{ marginBottom: 8 }}>
+      <h3
+        className="title-strong"
+        style={{ marginBottom: 8, fontSize: titleFontSize }}
+      >
         {title}
       </h3>
       <p className="muted small">{description}</p>

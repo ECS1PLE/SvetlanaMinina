@@ -154,9 +154,9 @@ const App: React.FC = () => {
   const leaderBenefits = [
     {
       icon: <Target style={{ width: 20, height: 20 }} />,
-      title: "Создание команды мечты",
+      title: "Индивидуальная программа развития",
       description:
-        "Делегирование ответственности, а не задач. Среда для инициативы без контроля.",
+        "Персональная дорожная карта на 3–6 месяцев: от диагностики до стратегического лидерства.",
       cardStyle: { background: "linear-gradient(90deg, #6366f1, #3b82f6)" },
       iconStyle: { color: "white" },
     },
@@ -464,6 +464,7 @@ const App: React.FC = () => {
                   description={p.description}
                   cardStyle={p.cardStyle}
                   iconStyle={p.iconStyle}
+                  titleFontSize="17px"
                 />
               ))}
             </div>
