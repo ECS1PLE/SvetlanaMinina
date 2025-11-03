@@ -120,13 +120,6 @@ const LeadMagnetCard: FC = () => {
               {loading ? "Отправляем..." : "Получить гайд"}
             </button>
           </form>
-
-          {success && (
-            <p style={{ color: "green", marginTop: 8 }}>
-              ✅ Гайд отправлен! Проверьте почту (и папку Спам)
-            </p>
-          )}
-          {error && <p style={{ color: "red", marginTop: 8 }}>⚠️ {error}</p>}
         </div>
       </div>
     </div>

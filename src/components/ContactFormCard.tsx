@@ -44,7 +44,6 @@ const ContactFormCard: FC = () => {
         setMessage(data?.error || "Ошибка при отправке");
       } else {
         setMessage(data?.message || "Отправлено");
-        // очистить форму
         setFullName("");
         setEmail("");
         setPhone("");
