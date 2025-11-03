@@ -34,7 +34,5 @@ app.post("/api/send-guide", async (req, res) => {
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(
-    `✅ Сервер запущен на http://localhost:${PORT} — endpoints: POST /api/send-email, POST /api/send-guide`
-  );
+  console.log(`✅ Сервер запущен на http://localhost:${PORT} `);
 });
