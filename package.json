@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "start:api": "node api/server.js",
     "dev:api": "nodemon --watch api api/server.js",
-    "postinstall": "chmod +x node_modules/.bin/vite || true"
+    "postinstall": "chmod +x node_modules/.bin/vite || true",
+    "test": "jest"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -26,13 +27,20 @@
     "react-hook-form": "^7.65.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "autoprefixer": "^10.4.21",
     "concurrently": "^9.2.1",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
     "nodemon": "^3.1.10",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.16",
+    "ts-jest": "^29.4.5",
     "tslib": "^2.6.0",
     "typescript": "^5.2.0",
     "vite": "^5.0.0"

@@ -7,7 +7,7 @@ const ContactFormCard: FC = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [telegramHandle, setTelegramHandle] = useState("");
-  const [requestType, setRequestType] = useState("individual"); // значение селекта
+  const [requestType, setRequestType] = useState("individual");
   const [agree, setAgree] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -16,7 +16,6 @@ const ContactFormCard: FC = () => {
     e.preventDefault();
     setMessage(null);
 
-    // простая фронт-валидация
     if (fullName.trim().length < 2) return setMessage("Введите имя.");
     if (phone.trim().length < 5)
       return setMessage("Введите корректный телефон.");
@@ -29,7 +28,7 @@ const ContactFormCard: FC = () => {
         email,
         phone,
         telegramHandle,
-        requestType, // <-- отправляем тип запроса
+        requestType,
         agree,
       };
 
