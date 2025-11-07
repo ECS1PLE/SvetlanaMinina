@@ -24,23 +24,18 @@ const LeadMagnetCard: FC = () => {
       let data: any = null;
 
       if (contentType.includes("application/json")) {
-        // если JSON — парсим
         data = await res.json();
       } else {
-        // если не JSON — читаем как текст (полезно для отладки)
         const text = await res.text();
-        // логим полный текст ответа в консоль для разработки
         console.warn(
           "Non-JSON response from /api/send-guide:",
           res.status,
           text
         );
-        // пробрасываем как ошибку, чтобы показать пользователю
         throw new Error(text || `Unexpected response status ${res.status}`);
       }
 
       if (!res.ok) {
-        // сервер вернул JSON с ошибкой
         throw new Error(data.error || JSON.stringify(data));
       }
 
@@ -96,7 +91,6 @@ const LeadMagnetCard: FC = () => {
             <li>Cкрипт первой сессии с командой без микроменеджмента</li>
           </ul>
 
-          {/* форма */}
           <form
             onSubmit={handleSubmit}
             className="LeadManagedFormAdapt"

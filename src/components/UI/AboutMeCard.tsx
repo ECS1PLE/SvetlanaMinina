@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { UserIcon } from "@heroicons/react/24/outline";
 
-const profileImage = new URL("../images/minina_1.jpg", import.meta.url).href;
+const profileImage = new URL("../../images/minina_1.jpg", import.meta.url).href;
 
 const AboutMeCard: FC = () => {
   return (

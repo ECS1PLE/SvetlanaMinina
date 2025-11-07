@@ -1,5 +1,5 @@
 import { FC } from "react";
-import ContactMethodItem from "./ContactMethodItem";
+import ContactMethodItem from "./UI/ContactMethodItem";
 
 interface Method {
   icon: any;

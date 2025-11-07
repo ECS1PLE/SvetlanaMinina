@@ -1,6 +1,6 @@
 // TrustSection.tsx
 import { FC } from "react";
-import TrustCard from "./TrustCard";
+import TrustCard from "./UI/TrustCard";
 
 const TrustSection: FC = () => {
   return (

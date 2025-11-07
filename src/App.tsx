@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
-import AboutMeCard from "./components/AboutMeCard";
-import SectionTitle from "./components/SectionTitle";
-import ProblemCard from "./components/ProblemCard";
-import BenefitCard from "./components/BenefitCard";
-import FormatCard from "./components/FormatCard";
-import CaseCard from "./components/CaseCard";
-import CTAButton from "./components/CTAButton";
-import ReviewCard from "./components/ReviewCard";
+import AboutMeCard from "./components/UI/AboutMeCard";
+import SectionTitle from "./components/UI/SectionTitle";
+import ProblemCard from "./components/UI/ProblemCard";
+import FormatCard from "./components/UI/FormatCard";
+import CaseCard from "./components/UI/CaseCard";
+import CTAButton from "./components/UI/CTAButton";
+import ReviewCard from "./components/UI/ReviewCard";
 import TrustSection from "./components/TrustSection";
-import ContactForm from "./components/ContactForm";
+import ContactForm from "./components/UI/ContactForm";
 import Footer from "./components/Footer";
 
 import {

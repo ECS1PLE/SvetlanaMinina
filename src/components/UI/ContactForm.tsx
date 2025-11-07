@@ -5,7 +5,7 @@ import {
   ChatBubbleLeftIcon,
   SparklesIcon,
 } from "@heroicons/react/24/outline";
-import ContactMethodsCard from "./ContactMethodCards";
+import ContactMethodsCard from "../ContactMethodCards";
 import ContactFormCard from "./ContactFormCard";
 import LeadMagnetCard from "./LeadMagnetCard";
 

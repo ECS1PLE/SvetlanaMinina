@@ -8,15 +8,14 @@ export default async function handler(req, res) {
   try {
     const {
       fullName,
-      contactMethod, // если у вас есть поле способа связи — оставьте
+      contactMethod,
       phone,
       telegramHandle,
       email,
       agree,
-      requestType, // теперь принимаем requestType
+      requestType,
     } = req.body || {};
 
-    // валидация
     if (!fullName || fullName.trim().length < 2)
       return res.status(400).json({ error: "Invalid or missing fullName" });
     if (!phone || phone.trim().length < 5)
@@ -24,7 +23,6 @@ export default async function handler(req, res) {
     if (agree !== true && agree !== "true")
       return res.status(400).json({ error: "Consent required" });
 
-    // Преобразование requestType в человекочитаемый текст
     const requestTypeMap = {
       individual: "Индивидуальная работа",
       business: "Для бизнеса",
@@ -82,7 +80,7 @@ export default async function handler(req, res) {
     `;
 
     await transporter.sendMail({
-      from: FROM_EMAIL, // Gmail может заменить на SMTP_USER
+      from: FROM_EMAIL,
       to: TO_EMAIL,
       subject: `Новая заявка: ${fullName}`,
       html,

@@ -55,7 +55,6 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Invalid or missing email" });
     }
 
-    // SMTP config
     const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, FROM_EMAIL } =
       process.env;
 
