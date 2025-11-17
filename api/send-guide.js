@@ -11,23 +11,36 @@ function resolveDocumentsDir() {
   return path.join(process.cwd(), "src", "documents");
 }
 
-async function chooseDocumentPath() {
+async function chooseDocumentPaths() {
   const docsDir = resolveDocumentsDir();
 
   if (!fsSync.existsSync(docsDir)) {
     throw new Error(`Documents directory not found: ${docsDir}`);
   }
 
-  const requested = process.env.GUIDE_FILENAME;
+  const requested = process.env.GUIDE_FILENAMES;
+
   if (requested) {
-    if (requested.includes("..") || path.isAbsolute(requested)) {
-      throw new Error("GUIDE_FILENAME содержит недопустимые символы");
+    const filenames = requested.split(",").map((file) => file.trim());
+    const filePaths = [];
+
+    for (let file of filenames) {
+      if (file.includes("..") || path.isAbsolute(file)) {
+        throw new Error("GUIDE_FILENAMES содержит недопустимые символы");
+      }
+
+      const candidate = path.join(docsDir, file);
+      if (
+        !fsSync.existsSync(candidate) ||
+        !fsSync.statSync(candidate).isFile()
+      ) {
+        throw new Error(`Requested guide not found: ${file}`);
+      }
+
+      filePaths.push(candidate);
     }
-    const candidate = path.join(docsDir, requested);
-    if (!fsSync.existsSync(candidate) || !fsSync.statSync(candidate).isFile()) {
-      throw new Error(`Requested guide not found: ${requested}`);
-    }
-    return candidate;
+
+    return filePaths;
   }
 
   const files = await fs.readdir(docsDir);
@@ -41,7 +54,7 @@ async function chooseDocumentPath() {
     throw new Error(`No files found in documents directory: ${docsDir}`);
   }
 
-  return path.join(docsDir, onlyFiles[0]);
+  return [path.join(docsDir, onlyFiles[0]), path.join(docsDir, onlyFiles[1])];
 }
 
 export default async function handler(req, res) {
@@ -65,15 +78,19 @@ export default async function handler(req, res) {
         .json({ error: "Server misconfiguration: missing SMTP settings" });
     }
 
-    const docPath = await chooseDocumentPath();
-    const docName = path.basename(docPath);
+    const docPaths = await chooseDocumentPaths();
+    const docNames = docPaths.map((docPath) => path.basename(docPath));
 
-    const stat = fsSync.statSync(docPath);
     const maxBytes = Number(process.env.GUIDE_MAX_BYTES || 10 * 1024 * 1024);
-    if (stat.size > maxBytes) {
-      return res
-        .status(500)
-        .json({ error: "Guide file is too large to send as attachment" });
+    for (const docPath of docPaths) {
+      const stat = fsSync.statSync(docPath);
+      if (stat.size > maxBytes) {
+        return res.status(500).json({
+          error: `File ${path.basename(
+            docPath
+          )} is too large to send as attachment`,
+        });
+      }
     }
 
     const transporter = nodemailer.createTransport({
@@ -86,23 +103,23 @@ export default async function handler(req, res) {
       },
     });
 
+    const attachments = docPaths.map((docPath, index) => ({
+      filename: docNames[index],
+      path: docPath,
+    }));
+
     const info = await transporter.sendMail({
       from: FROM_EMAIL || SMTP_USER,
       to: email,
       subject:
         "Ваш гайд — 5 вопросов, после которых вы перестанете быть главным исполнителем",
-      text: "Здравствуйте!\n\nВо вложении вы найдете запрошенный гайд. Если не пришло — проверьте папку «Спам» или напишите нам.\n\nС уважением.",
-      attachments: [
-        {
-          filename: docName,
-          path: docPath,
-        },
-      ],
+      text: "Здравствуйте!\n\nВо вложении вы найдете запрашиваемые гайды. Если не пришло — проверьте папку «Спам» или напишите нам.\n\nС уважением.",
+      attachments,
     });
 
     return res.status(200).json({
       ok: true,
-      message: "Гайд отправлен",
+      message: "Гайды отправлены",
       messageId: info && info.messageId,
     });
   } catch (err) {
