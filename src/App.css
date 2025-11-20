@@ -503,3 +503,7 @@ select:focus {
 .text-center {
   text-align: center;
 }
+
+.flex {
+  display: flex;
+}

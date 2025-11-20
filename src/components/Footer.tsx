@@ -36,6 +36,20 @@ const Footer = () => {
         <p style={{ color: "#6B7280", fontSize: 12 }}>
           © {new Date().getFullYear()} Светлана Минина. Все права защищены.
         </p>
+        <div className="flex" style={{ justifyContent: "center", gap: "8px" }}>
+          <p>Разработка: </p>
+          <a
+            href="https://ecs1ple-dev.vercel.app"
+            style={{
+              marginTop: "auto",
+              marginBottom: "auto",
+              color: "white",
+              textDecoration: "none",
+            }}
+          >
+            Artyom Vavilov
+          </a>
+        </div>
       </div>
     </footer>
   );
